@@ -1,4 +1,4 @@
-package Handlers
+package handlers
 
 import (
 	"fmt"
@@ -12,11 +12,11 @@ type Engine struct {
 }
 
 func NewEngine(l *log.Logger) *Engine {
-	return &Engine{}
+	return &Engine{l}
 }
 
-func (e *Engine) ServerHTTP(rw http.ResponseWriter, r *http.Request) {
-	h.l.Println("Hello World")
+func (e *Engine) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
+	e.l.Println("Hello World")
 
 	d, err := ioutil.ReadAll(r.Body)
 	if err != nil {
